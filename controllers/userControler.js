@@ -41,7 +41,7 @@ const userRegister = async (req, res) => {
     const token = createToken(user._id);
     res
       .status(200)
-      .json({ _id: user._id, email, password: user.password, token });
+      .json({ _id: user._id,name, email, password: user.password, token });
   } catch (err) {
     console.log(err);
     res.status(509).json(err);
@@ -53,7 +53,7 @@ const userLogin = async (req, res) => {
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(400).json("invalid email or password");
+      return res.status(400).json("invalid email");
     }
 
     //comparing password
